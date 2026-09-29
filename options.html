@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self';" />
+    <title>Proxy Bypass — настройки</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Proxy Bypass</h1>
+      <p class="lead">
+        Запросы из перечисленных вкладок и с перечисленных сайтов уходят напрямую, минуя прокси Firefox.
+        Все остальные запросы идут через прокси ровно так же, как до установки расширения.
+      </p>
+
+      <section>
+        <h2>Состояние</h2>
+        <div class="row">
+          <label class="switch">
+            <input type="checkbox" id="enabled" />
+            <span>Расширение включено</span>
+          </label>
+        </div>
+        <div class="stats" id="stats"></div>
+        <div class="kv" id="diagnostics"></div>
+      </section>
+
+      <section>
+        <h2>Правила сайтов</h2>
+        <p class="hint">
+          Постоянный список. Хост без <code>*</code> совпадает вместе со своими поддоменами
+          (<code>example.com</code> → <code>example.com</code> и <code>a.example.com</code>).
+          <code>*.local</code> — только поддомены. <code>localhost:8080</code> — с указанием порта.
+          Правило с путём (<code>example.com/api</code>) или со схемой (<code>https://example.com</code>)
+          сравнивается как префикс URL, с <code>*</code> — как шаблон.
+        </p>
+        <form id="rule-form" class="row">
+          <input type="text" id="rule-input" placeholder="example.com" autocomplete="off" spellcheck="false" />
+          <button type="submit">Добавить</button>
+        </form>
+        <ul class="list" id="rules"></ul>
+        <p class="empty" id="rules-empty">Правил нет.</p>
+        <div class="row">
+          <button type="button" id="clear-rules" class="danger">Удалить все правила</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Вкладки</h2>
+        <p class="hint">
+          Список живёт до перезапуска браузера: идентификаторы вкладок не переживают его.
+          Нужно постоянное исключение — добавляйте правило сайта.
+        </p>
+        <ul class="list" id="tabs"></ul>
+        <p class="empty" id="tabs-empty">Вкладок в списке нет.</p>
+        <div class="row">
+          <button type="button" id="clear-tabs" class="danger">Удалить все вкладки</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Параметры</h2>
+        <label class="switch">
+          <input type="checkbox" id="match-request-url" />
+          <span>Учитывать URL самого запроса, а не только страницу-источник</span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="bypass-non-tab" />
+          <span>Обходить прокси и для запросов вне вкладок (служебные, предзагрузка)</span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="verbose" />
+          <span>Вести журнал решений (медленнее на очень нагруженных страницах)</span>
+        </label>
+      </section>
+
+      <section>
+        <h2>Журнал</h2>
+        <div class="row">
+          <button type="button" id="refresh">Обновить</button>
+          <button type="button" id="clear-log">Очистить журнал</button>
+        </div>
+        <ul class="list log" id="log"></ul>
+        <p class="empty" id="log-empty">Журнал пуст. Включите его в параметрах выше.</p>
+      </section>
+    </main>
+
+    <script src="lib/rules.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

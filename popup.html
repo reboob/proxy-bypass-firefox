@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self';" />
+    <title>Proxy Bypass</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="head">
+      <label class="switch">
+        <input type="checkbox" id="enabled" />
+        <span>Расширение включено</span>
+      </label>
+    </header>
+
+    <section class="card" id="tab-card">
+      <div class="card-title">Текущая вкладка</div>
+      <div class="url" id="tab-url">—</div>
+      <label class="switch">
+        <input type="checkbox" id="tab-bypass" />
+        <span>Не проксировать эту вкладку</span>
+      </label>
+      <button type="button" id="add-site">Всегда обходить этот сайт</button>
+      <p class="hint" id="tab-hint"></p>
+    </section>
+
+    <section class="card">
+      <div class="card-title">
+        Сайты-исключения
+        <span class="counter" id="rules-count"></span>
+      </div>
+      <ul class="list" id="rules"></ul>
+      <p class="empty" id="rules-empty">Список пуст — всё проксируется как обычно.</p>
+    </section>
+
+    <footer class="foot">
+      <button type="button" id="open-options" class="link">Настройки и правила</button>
+    </footer>
+
+    <script src="lib/rules.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

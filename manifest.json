@@ -1,0 +1,47 @@
+{
+  "manifest_version": 2,
+  "name": "Proxy Bypass by Tabs",
+  "version": "1.0.0",
+  "description": "Не отправляет через прокси запросы из вкладок и сайтов, добавленных в список исключений.",
+
+  "permissions": [
+    "proxy",
+    "storage",
+    "tabs",
+    "<all_urls>"
+  ],
+
+  "background": {
+    "scripts": ["lib/rules.js", "background.js"],
+    "persistent": true
+  },
+
+  "browser_action": {
+    "default_title": "Proxy Bypass",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon.svg",
+      "32": "icons/icon.svg",
+      "48": "icons/icon.svg"
+    }
+  },
+
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  },
+
+  "incognito": "spanning",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "proxy-bypass-tabs@local.extension",
+      "strict_min_version": "115.0"
+    }
+  }
+}
