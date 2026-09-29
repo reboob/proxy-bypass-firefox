@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Proxy Bypass by Tabs",
+  "name": "Proxy Bypass",
   "version": "1.0.0",
   "description": "Не отправляет через прокси запросы из вкладок и сайтов, добавленных в список исключений.",
 
@@ -41,7 +41,11 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "proxy-bypass-tabs@local.extension",
-      "strict_min_version": "115.0"
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"],
+        "optional": []
+      }
     }
   }
 }
